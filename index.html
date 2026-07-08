@@ -122,35 +122,533 @@
   ]
 }
   </script>
-  <style>
-:root { --fg:#1a1a2e; --muted:#5c5c72; --accent:#2d5bff; --bg:#ffffff; --card:#f6f7fb; --line:#e6e8f0; }
-* { box-sizing: border-box; }
-body { margin:0; font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; color:var(--fg); background:var(--bg); line-height:1.7; }
-main { max-width: 760px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
-header { padding: 2rem 0 1rem; border-bottom: 2px solid var(--line); margin-bottom: 1.5rem; }
-.eyebrow { color: var(--accent); font-weight: 600; margin: 0 0 .25rem; letter-spacing: .02em; }
-h1 { font-size: 2.4rem; margin: 0; }
-h2 { font-size: 1.25rem; margin: 2rem 0 .5rem; padding-left: .6rem; border-left: 4px solid var(--accent); }
-section p { margin: .25rem 0 0; }
-ul { margin: .5rem 0 0; padding-left: 1.2rem; }
-li { margin: .25rem 0; }
-.facts, .symbols { list-style: none; padding: 1rem 1.2rem; background: var(--card); border-radius: 12px; }
-.faq details { border: 1px solid var(--line); border-radius: 10px; padding: .5rem .9rem; margin: .5rem 0; }
-.faq summary { cursor: pointer; font-weight: 600; }
-.faq details p { margin: .5rem 0 .25rem; color: var(--muted); }
-.sources { font-size: .9rem; color: var(--muted); }
-a { color: var(--accent); }
-footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .85rem; }
-</style>
+  <script id="region-data" type="application/json">
+{
+  "characteristics": "면적 약 23.85㎢에 2022년 기준 약 36만 명이 거주하는 마포구는 인구 밀도가 높은 도심형 자치구로, 16개 행정동과 26개 법정동으로 나뉜다. 산업 구성은 방송·출판·디자인 등 콘텐츠 분야와 창업·스타트업 생태계가 두드러진다는 점에서 서울의 다른 자치구와 뚜렷이 구별된다. 상암동 디지털미디어시티가 방송·IT 클러스터를 이룬다면, 홍대·합정·연남동 벨트는 소규모 문화 산업과 상권이 촘촘히 얽힌 지역이다. 서강대학교와 홍익대학교가 자리해 대학생과 예술가 인구가 상권과 임대 시장에 큰 영향을 준다. 공덕동 일대는 오피스와 주거가 섞인 도심 업무 상권으로, 젊은 문화 이미지와는 또 다른 안정된 생활권을 형성한다.",
+  "coords": {
+    "lat": 37.5638,
+    "lng": 126.9084
+  },
+  "cultural_heritage": [
+    {
+      "description": "합정동 한강변 잠두봉에 자리한 천주교 순교성지로, 1866년 병인박해 순교를 기린다. 일대는 '서울 양화나루와 잠두봉 유적'으로 사적으로 지정되어 있다.",
+      "name": "절두산 순교성지"
+    },
+    {
+      "description": "합정동에 있는 근대 외국인 묘원으로, 1890년 조성 이후 개신교 선교사 등 여러 나라 인사가 안장되어 한국 근대사와 선교 역사를 증언한다.",
+      "name": "양화진외국인선교사묘원"
+    },
+    {
+      "description": "매봉산 자락 옛 마포석유비축기지를 재생한 복합문화공간으로, 여섯 개의 탱크에서 전시·공연·워크숍이 열리고 넓은 문화마당이 축제 무대가 된다.",
+      "name": "문화비축기지"
+    },
+    {
+      "description": "대흥동에 자리한 마포문화재단 운영의 전문 공연장으로, 클래식·연극·전시 등 다양한 프로그램을 선보이는 지역 대표 문화시설이다.",
+      "name": "마포아트센터"
+    },
+    {
+      "description": "마포나루의 새우젓 상거래 전통을 잇는 향토 축제로, 젓갈 장터와 공연·체험 행사가 어우러져 매년 열린다.",
+      "name": "마포나루 새우젓축제"
+    }
+  ],
+  "faq": [
+    {
+      "answer": "마포구청은 상암동 월드컵로 212에 있으며, 서울 지하철 6호선 마포구청역에서 가깝습니다.",
+      "question": "마포구청은 어디에 있고 어떻게 가나요?"
+    },
+    {
+      "answer": "2호선·경의중앙선·공항철도가 만나는 홍대입구역에서 내리면 걷고싶은거리와 연남동 상권으로 바로 이어집니다.",
+      "question": "홍대 거리에 가려면 어느 역에서 내려야 하나요?"
+    },
+    {
+      "answer": "상암동 하늘공원이 가을 억새 군락으로 가장 유명하며, 매년 억새 축제 기간에는 야간 개장도 진행됩니다.",
+      "question": "마포구에서 가을 억새를 볼 수 있는 곳은 어디인가요?"
+    },
+    {
+      "answer": "인천국제공항철도를 타면 환승 없이 홍대입구역이나 공덕역에 도착할 수 있어 접근성이 좋습니다.",
+      "question": "인천공항에서 마포구로 바로 오는 방법이 있나요?"
+    },
+    {
+      "answer": "상암동 디지털미디어시티를 중심으로 한 방송·미디어 산업과 홍대·합정 일대의 문화·출판·창업 생태계가 지역을 대표합니다.",
+      "question": "마포구를 대표하는 산업은 무엇인가요?"
+    },
+    {
+      "answer": "조선시대 마포나루가 새우젓 유통의 중심지였던 전통을 이어 지금도 마포나루 새우젓축제가 열리며 지역의 향토 문화로 남아 있습니다.",
+      "question": "마포나루 새우젓은 지금도 유명한가요?"
+    }
+  ],
+  "geography_nature": "마포구는 서울 서북부에 위치하며 남쪽으로 한강을 경계 삼아 강서구·영등포구와 마주하고, 북쪽으로는 서대문구와 은평구, 동쪽으로는 중구·용산구, 서쪽으로는 경기도 고양시 덕양구와 접한다. 지형은 대체로 낮고 평탄한 편이지만 성미산과 매봉산 같은 야트막한 구릉이 주택가 사이에 솟아 있다. 한강 본류가 구의 남쪽 경계를 길게 흐르고, 홍제천과 불광천이 북부를 지나 한강으로 합류한다. 상암동 서쪽 끝에는 옛 난지도가 자리해 두 물길이 한강과 만나던 삼각주 지형의 흔적을 남긴다. 한강 가운데 떠 있는 밤섬은 철새가 찾아드는 습지로 생태 보전 구역으로 관리된다.",
+  "history": "마포구 일대는 조선시대 한강 수운의 요충지로, 마포나루를 통해 삼남 지방의 곡물과 새우젓·소금 같은 젓갈류가 도성으로 드나들던 번화한 상업 포구였다. 마포구라는 행정 단위는 1944년 11월 1일 경성부 마포구로 처음 설치되었고, 광복 이후 서울특별시의 자치구로 자리를 잡았다. 근대에는 공덕동과 도화동을 중심으로 시가지가 넓어졌고 아현동 일대에는 오래된 주거지가 형성되었다. 1990년대 이후 홍익대학교 앞을 축으로 한 문화 거리가 폭발적으로 성장하면서 지역 색이 크게 바뀌었다. 2002년 한일 월드컵을 앞두고 옛 난지도 쓰레기 매립지가 월드컵공원으로, 상암동 일대가 디지털미디어시티로 재탄생하며 오늘의 마포가 완성되었다.",
+  "intro": "마포구는 한강 북안에 자리한 서울의 자치구로, 옛 마포나루의 물류 전통 위에 오늘날 청년 문화와 미디어 산업이 겹쳐 성장한 곳이다. 홍대와 합정, 연남동 일대는 인디 음악과 카페, 출판·디자인 스튜디오가 밀집해 서울에서 가장 젊은 거리로 꼽힌다. 상암동 디지털미디어시티에는 지상파 방송사와 IT 기업이 모여 수도권 방송·콘텐츠 산업의 한 축을 이룬다. 경의선 숲길과 월드컵공원이 촘촘한 도심 사이로 녹지의 여유를 더한다. 강 건너 여의도·영등포와 마주 보며 서울 서북부의 관문 역할도 겸한다.",
+  "landmarks": [
+    {
+      "description": "2002년 한일 월드컵을 위해 상암동에 지어진 축구 전용 경기장으로, 프로축구 FC 서울의 홈구장이자 대형 공연도 열리는 랜드마크다.",
+      "name": "서울월드컵경기장"
+    },
+    {
+      "description": "옛 난지도 쓰레기 매립지를 생태공원으로 되살린 곳으로, 가을이면 억새 군락과 메타세쿼이아 길이 장관을 이룬다.",
+      "name": "하늘공원"
+    },
+    {
+      "description": "홍익대학교 앞에 형성된 청년 문화의 중심지로, 인디 음악 공연과 거리 예술, 개성 있는 상점이 밀집해 있다.",
+      "name": "홍대 걷고싶은거리"
+    },
+    {
+      "description": "폐선된 경의선 부지를 선형 공원으로 조성한 도심 산책로로, 연남동 구간은 '연트럴파크'라는 별칭으로 사랑받는다.",
+      "name": "경의선 숲길"
+    },
+    {
+      "description": "상암동에 조성된 첨단 미디어·IT 단지로, 지상파 방송사와 콘텐츠 기업 본사가 모여 있는 서울 서북부의 산업 거점이다.",
+      "name": "디지털미디어시티"
+    }
+  ],
+  "nature_rest": [
+    {
+      "description": "상암동·성산동 일원에 조성된 대공원으로 평화의공원·하늘공원·노을공원·난지천공원·난지한강공원 다섯 구역으로 이루어져 있다.",
+      "name": "월드컵공원"
+    },
+    {
+      "description": "난지도 매립지 위에 만들어진 공원으로, 한강 너머로 지는 노을 조망과 캠핑장·잔디밭이 어우러진 가족 나들이 명소다.",
+      "name": "노을공원"
+    },
+    {
+      "description": "한강변을 따라 산책로와 자전거길, 캠핑장이 펼쳐진 수변 공원으로, 월드컵공원과 연결 다리로 이어진다.",
+      "name": "난지한강공원"
+    },
+    {
+      "description": "성산동의 해발 66m 남짓한 나지막한 산으로, 완만한 산책로와 맨발길이 있어 인근 주민의 일상 휴식처가 된다. 성미산마을 공동체 운동의 상징이기도 하다.",
+      "name": "성미산"
+    },
+    {
+      "description": "망원동 한강변에 자리한 공원으로, 넓은 잔디밭과 자전거 대여, 유람선 선착장을 갖춰 시민들의 여가 공간으로 붐빈다.",
+      "name": "망원한강공원"
+    }
+  ],
+  "org_slug": "kr-seoul-mapo",
+  "sido": "서울특별시",
+  "sigungu": "마포구",
+  "symbols": {
+    "bird": "청둥오리",
+    "flower": "목련",
+    "tree": "단풍나무"
+  },
+  "transport": "마포구에는 서울 지하철 2호선·5호선·6호선과 경의·중앙선, 인천국제공항철도가 지나 서울 서북부에서 손꼽히는 교통 요지다. 홍대입구역은 2호선·경의중앙선·공항철도가 만나는 세 노선 환승역으로, 인천공항과 도심을 잇는 관문이자 관광객이 가장 많이 찾는 거점이다. 공덕역 역시 5호선·6호선·경의중앙선·공항철도가 교차해 여러 방향으로 빠르게 연결되는 결절점 역할을 한다. 상암동에는 6호선 디지털미디어시티역과 월드컵경기장역이 미디어 산업 단지와 경기장 이용객을 실어 나른다. 도로로는 강변북로가 한강을 따라 동서로 이어지고 월드컵로와 마포대로가 지역의 주요 간선축을 이룬다. 마포대교·양화대교·성산대교가 한강을 건너 영등포·여의도 방면과 연결된다."
+}
+  </script>
 </head>
 <body>
-  <main>
-    <header>
-      <p class="eyebrow">서울특별시</p>
-      <h1>마포구</h1>
-    </header>
-    <div class="content">
-      <section id="intro">
+<div class="mapo-turntable" id="mapo-root">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Righteous&family=Nanum+Myeongjo:wght@400;700;800&family=Gaegu:wght@400;700&display=swap');
+
+    .mapo-turntable{
+      --hot:#FF007F;
+      --cyan:#00E5FF;
+      --ink:#0b0b10;
+      --vinyl:#15151d;
+      --paper:#f4efe6;
+      --serif:'Nanum Myeongjo',serif;
+      --disp:'Righteous',cursive;
+      --retro:'Gaegu',cursive;
+      position:relative;
+      color:var(--paper);
+      background:
+        radial-gradient(circle at 20% 15%, rgba(255,0,127,.16), transparent 45%),
+        radial-gradient(circle at 82% 80%, rgba(0,229,255,.14), transparent 48%),
+        repeating-linear-gradient(45deg, rgba(255,255,255,.015) 0 2px, transparent 2px 8px),
+        var(--ink);
+      font-family:var(--serif);
+      overflow:hidden;
+      border-radius:18px;
+      isolation:isolate;
+    }
+    .mapo-turntable *{box-sizing:border-box;}
+
+    .mapo-hero{
+      padding:34px 20px 14px;
+      text-align:center;
+      position:relative;
+    }
+    .mapo-kicker{
+      font-family:var(--disp);
+      letter-spacing:.32em;
+      font-size:12px;
+      color:var(--cyan);
+      text-transform:uppercase;
+      opacity:.9;
+    }
+    .mapo-title{
+      font-family:var(--serif);
+      font-weight:800;
+      font-size:clamp(30px,7vw,54px);
+      margin:6px 0 2px;
+      line-height:1.05;
+      color:var(--paper);
+      text-shadow:0 0 22px rgba(255,0,127,.35);
+    }
+    .mapo-title b{color:var(--hot);}
+    .mapo-sub{
+      font-family:var(--retro);
+      font-size:16px;
+      color:var(--cyan);
+      opacity:.92;
+      margin:0;
+    }
+    .mapo-neon{
+      display:inline-block;
+      margin-top:12px;
+      font-family:var(--disp);
+      font-size:11px;
+      letter-spacing:.24em;
+      padding:6px 16px;
+      border:1px solid var(--hot);
+      border-radius:999px;
+      color:var(--hot);
+      box-shadow:0 0 12px rgba(255,0,127,.4), inset 0 0 8px rgba(255,0,127,.15);
+    }
+
+    /* ---- Deck layout ---- */
+    .mapo-deck{
+      display:grid;
+      grid-template-columns:340px 1fr;
+      gap:26px;
+      align-items:start;
+      padding:10px 26px 30px;
+    }
+    @media(max-width:840px){
+      .mapo-deck{grid-template-columns:1fr; gap:16px; padding:6px 16px 26px;}
+    }
+
+    /* ---- Turntable ---- */
+    .mapo-tt-wrap{
+      position:sticky;
+      top:14px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:14px;
+    }
+    .mapo-platter{
+      position:relative;
+      width:300px;height:300px;
+      max-width:82vw;max-height:82vw;
+      border-radius:50%;
+      touch-action:none;
+      user-select:none;
+      cursor:grab;
+      background:
+        repeating-radial-gradient(circle at center, rgba(255,255,255,.04) 0 1px, transparent 1px 4px),
+        radial-gradient(circle at center, #23232e 0 26%, var(--vinyl) 26% 100%);
+      box-shadow:0 0 0 6px #0d0d13, 0 0 0 8px rgba(0,229,255,.25), 0 22px 50px rgba(0,0,0,.6),
+                 inset 0 0 40px rgba(0,0,0,.7);
+      transition:box-shadow .3s;
+    }
+    .mapo-platter.dragging{cursor:grabbing;}
+    .mapo-platter::after{
+      content:"";position:absolute;inset:0;border-radius:50%;
+      border:1px dashed rgba(255,0,127,.25);
+      margin:14px;pointer-events:none;
+    }
+    /* rotating group holding section pips */
+    .mapo-rotor{
+      position:absolute;inset:0;
+      transition:transform .05s linear;
+      will-change:transform;
+    }
+    .mapo-pip{
+      position:absolute;
+      left:50%;top:50%;
+      width:0;height:0;
+    }
+    .mapo-pip .dot{
+      position:absolute;
+      transform:translate(-50%,-50%);
+      width:64px;height:64px;margin-top:-118px;
+      border-radius:50%;
+      background:rgba(20,20,28,.9);
+      border:1px solid rgba(0,229,255,.35);
+      display:flex;align-items:center;justify-content:center;
+      flex-direction:column;
+      font-family:var(--retro);
+      font-size:11px;line-height:1.05;
+      color:var(--cyan);
+      text-align:center;
+      box-shadow:inset 0 0 10px rgba(0,0,0,.6);
+      transition:.25s;
+    }
+    .mapo-pip .dot .ic{font-size:18px;margin-bottom:1px;}
+    /* center label reads active section */
+    .mapo-hub{
+      position:absolute;left:50%;top:50%;
+      transform:translate(-50%,-50%);
+      width:118px;height:118px;border-radius:50%;
+      background:radial-gradient(circle at 40% 35%, #2a2a36, #0c0c11);
+      border:2px solid var(--hot);
+      box-shadow:0 0 20px rgba(255,0,127,.5), inset 0 0 14px rgba(0,0,0,.7);
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      text-align:center;pointer-events:none;padding:8px;
+    }
+    .mapo-hub .num{font-family:var(--disp);font-size:12px;color:var(--cyan);letter-spacing:.1em;}
+    .mapo-hub .lab{font-family:var(--serif);font-weight:800;font-size:16px;color:var(--paper);margin-top:2px;}
+    .mapo-hub .hint{font-family:var(--retro);font-size:10px;color:var(--hot);margin-top:3px;}
+    /* fixed pointer at top (12 o'clock) */
+    .mapo-needle{
+      position:absolute;left:50%;top:-6px;transform:translateX(-50%);
+      width:0;height:0;
+      border-left:11px solid transparent;border-right:11px solid transparent;
+      border-top:20px solid var(--hot);
+      filter:drop-shadow(0 0 6px rgba(255,0,127,.8));
+      z-index:4;
+    }
+    .mapo-tt-cta{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;}
+    .mapo-btn{
+      font-family:var(--disp);font-size:11px;letter-spacing:.14em;
+      background:transparent;color:var(--cyan);
+      border:1px solid rgba(0,229,255,.5);border-radius:999px;
+      padding:7px 14px;cursor:pointer;transition:.2s;
+    }
+    .mapo-btn:hover{background:var(--cyan);color:var(--ink);box-shadow:0 0 14px rgba(0,229,255,.5);}
+    .mapo-btn.hot{color:var(--hot);border-color:rgba(255,0,127,.5);}
+    .mapo-btn.hot:hover{background:var(--hot);color:#fff;box-shadow:0 0 14px rgba(255,0,127,.5);}
+
+    /* ---- Content stage ---- */
+    .mapo-stage{min-width:0;}
+    .mapo-quicknav{
+      display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;
+    }
+    .mapo-quicknav button{
+      font-family:var(--retro);font-size:12px;
+      background:rgba(255,255,255,.04);color:var(--paper);
+      border:1px solid rgba(255,255,255,.12);border-radius:8px;
+      padding:5px 10px;cursor:pointer;transition:.18s;
+    }
+    .mapo-quicknav button:hover,.mapo-quicknav button[aria-current="true"]{
+      border-color:var(--hot);color:var(--hot);
+    }
+
+    /* the       <section id="intro">
+        <h2>지역 소개</h2>
+        <p>마포구는 한강 북안에 자리한 서울의 자치구로, 옛 마포나루의 물류 전통 위에 오늘날 청년 문화와 미디어 산업이 겹쳐 성장한 곳이다. 홍대와 합정, 연남동 일대는 인디 음악과 카페, 출판·디자인 스튜디오가 밀집해 서울에서 가장 젊은 거리로 꼽힌다. 상암동 디지털미디어시티에는 지상파 방송사와 IT 기업이 모여 수도권 방송·콘텐츠 산업의 한 축을 이룬다. 경의선 숲길과 월드컵공원이 촘촘한 도심 사이로 녹지의 여유를 더한다. 강 건너 여의도·영등포와 마주 보며 서울 서북부의 관문 역할도 겸한다.</p>
+      </section>
+      <section id="facts">
+        <h2>주요 통계</h2>
+        <ul class="facts">
+          <li>인구: 약 364,374명 (2022)</li>
+          <li>면적: 23.85 km²</li>
+          <li>신설: 1944-11-01</li>
+        </ul>
+      </section>
+      <section id="history">
+        <h2>역사</h2>
+        <p>마포구 일대는 조선시대 한강 수운의 요충지로, 마포나루를 통해 삼남 지방의 곡물과 새우젓·소금 같은 젓갈류가 도성으로 드나들던 번화한 상업 포구였다. 마포구라는 행정 단위는 1944년 11월 1일 경성부 마포구로 처음 설치되었고, 광복 이후 서울특별시의 자치구로 자리를 잡았다. 근대에는 공덕동과 도화동을 중심으로 시가지가 넓어졌고 아현동 일대에는 오래된 주거지가 형성되었다. 1990년대 이후 홍익대학교 앞을 축으로 한 문화 거리가 폭발적으로 성장하면서 지역 색이 크게 바뀌었다. 2002년 한일 월드컵을 앞두고 옛 난지도 쓰레기 매립지가 월드컵공원으로, 상암동 일대가 디지털미디어시티로 재탄생하며 오늘의 마포가 완성되었다.</p>
+      </section>
+      <section id="geography">
+        <h2>지리·자연환경</h2>
+        <p>마포구는 서울 서북부에 위치하며 남쪽으로 한강을 경계 삼아 강서구·영등포구와 마주하고, 북쪽으로는 서대문구와 은평구, 동쪽으로는 중구·용산구, 서쪽으로는 경기도 고양시 덕양구와 접한다. 지형은 대체로 낮고 평탄한 편이지만 성미산과 매봉산 같은 야트막한 구릉이 주택가 사이에 솟아 있다. 한강 본류가 구의 남쪽 경계를 길게 흐르고, 홍제천과 불광천이 북부를 지나 한강으로 합류한다. 상암동 서쪽 끝에는 옛 난지도가 자리해 두 물길이 한강과 만나던 삼각주 지형의 흔적을 남긴다. 한강 가운데 떠 있는 밤섬은 철새가 찾아드는 습지로 생태 보전 구역으로 관리된다.</p>
+      </section>
+      <section id="characteristics">
+        <h2>지역 특징</h2>
+        <p>면적 약 23.85㎢에 2022년 기준 약 36만 명이 거주하는 마포구는 인구 밀도가 높은 도심형 자치구로, 16개 행정동과 26개 법정동으로 나뉜다. 산업 구성은 방송·출판·디자인 등 콘텐츠 분야와 창업·스타트업 생태계가 두드러진다는 점에서 서울의 다른 자치구와 뚜렷이 구별된다. 상암동 디지털미디어시티가 방송·IT 클러스터를 이룬다면, 홍대·합정·연남동 벨트는 소규모 문화 산업과 상권이 촘촘히 얽힌 지역이다. 서강대학교와 홍익대학교가 자리해 대학생과 예술가 인구가 상권과 임대 시장에 큰 영향을 준다. 공덕동 일대는 오피스와 주거가 섞인 도심 업무 상권으로, 젊은 문화 이미지와는 또 다른 안정된 생활권을 형성한다.</p>
+      </section>
+      <section id="landmarks">
+        <h2>대표 명소</h2>
+        <ul>
+          <li><strong>서울월드컵경기장</strong> — 2002년 한일 월드컵을 위해 상암동에 지어진 축구 전용 경기장으로, 프로축구 FC 서울의 홈구장이자 대형 공연도 열리는 랜드마크다.</li>
+          <li><strong>하늘공원</strong> — 옛 난지도 쓰레기 매립지를 생태공원으로 되살린 곳으로, 가을이면 억새 군락과 메타세쿼이아 길이 장관을 이룬다.</li>
+          <li><strong>홍대 걷고싶은거리</strong> — 홍익대학교 앞에 형성된 청년 문화의 중심지로, 인디 음악 공연과 거리 예술, 개성 있는 상점이 밀집해 있다.</li>
+          <li><strong>경의선 숲길</strong> — 폐선된 경의선 부지를 선형 공원으로 조성한 도심 산책로로, 연남동 구간은 &#x27;연트럴파크&#x27;라는 별칭으로 사랑받는다.</li>
+          <li><strong>디지털미디어시티</strong> — 상암동에 조성된 첨단 미디어·IT 단지로, 지상파 방송사와 콘텐츠 기업 본사가 모여 있는 서울 서북부의 산업 거점이다.</li>
+        </ul>
+      </section>
+      <section id="heritage">
+        <h2>문화유산·문화시설</h2>
+        <ul>
+          <li><strong>절두산 순교성지</strong> — 합정동 한강변 잠두봉에 자리한 천주교 순교성지로, 1866년 병인박해 순교를 기린다. 일대는 &#x27;서울 양화나루와 잠두봉 유적&#x27;으로 사적으로 지정되어 있다.</li>
+          <li><strong>양화진외국인선교사묘원</strong> — 합정동에 있는 근대 외국인 묘원으로, 1890년 조성 이후 개신교 선교사 등 여러 나라 인사가 안장되어 한국 근대사와 선교 역사를 증언한다.</li>
+          <li><strong>문화비축기지</strong> — 매봉산 자락 옛 마포석유비축기지를 재생한 복합문화공간으로, 여섯 개의 탱크에서 전시·공연·워크숍이 열리고 넓은 문화마당이 축제 무대가 된다.</li>
+          <li><strong>마포아트센터</strong> — 대흥동에 자리한 마포문화재단 운영의 전문 공연장으로, 클래식·연극·전시 등 다양한 프로그램을 선보이는 지역 대표 문화시설이다.</li>
+          <li><strong>마포나루 새우젓축제</strong> — 마포나루의 새우젓 상거래 전통을 잇는 향토 축제로, 젓갈 장터와 공연·체험 행사가 어우러져 매년 열린다.</li>
+        </ul>
+      </section>
+      <section id="nature">
+        <h2>자연·휴식</h2>
+        <ul>
+          <li><strong>월드컵공원</strong> — 상암동·성산동 일원에 조성된 대공원으로 평화의공원·하늘공원·노을공원·난지천공원·난지한강공원 다섯 구역으로 이루어져 있다.</li>
+          <li><strong>노을공원</strong> — 난지도 매립지 위에 만들어진 공원으로, 한강 너머로 지는 노을 조망과 캠핑장·잔디밭이 어우러진 가족 나들이 명소다.</li>
+          <li><strong>난지한강공원</strong> — 한강변을 따라 산책로와 자전거길, 캠핑장이 펼쳐진 수변 공원으로, 월드컵공원과 연결 다리로 이어진다.</li>
+          <li><strong>성미산</strong> — 성산동의 해발 66m 남짓한 나지막한 산으로, 완만한 산책로와 맨발길이 있어 인근 주민의 일상 휴식처가 된다. 성미산마을 공동체 운동의 상징이기도 하다.</li>
+          <li><strong>망원한강공원</strong> — 망원동 한강변에 자리한 공원으로, 넓은 잔디밭과 자전거 대여, 유람선 선착장을 갖춰 시민들의 여가 공간으로 붐빈다.</li>
+        </ul>
+      </section>
+      <section id="transport">
+        <h2>교통</h2>
+        <p>마포구에는 서울 지하철 2호선·5호선·6호선과 경의·중앙선, 인천국제공항철도가 지나 서울 서북부에서 손꼽히는 교통 요지다. 홍대입구역은 2호선·경의중앙선·공항철도가 만나는 세 노선 환승역으로, 인천공항과 도심을 잇는 관문이자 관광객이 가장 많이 찾는 거점이다. 공덕역 역시 5호선·6호선·경의중앙선·공항철도가 교차해 여러 방향으로 빠르게 연결되는 결절점 역할을 한다. 상암동에는 6호선 디지털미디어시티역과 월드컵경기장역이 미디어 산업 단지와 경기장 이용객을 실어 나른다. 도로로는 강변북로가 한강을 따라 동서로 이어지고 월드컵로와 마포대로가 지역의 주요 간선축을 이룬다. 마포대교·양화대교·성산대교가 한강을 건너 영등포·여의도 방면과 연결된다.</p>
+      </section>
+      <section id="symbols">
+        <h2>지역 상징</h2>
+        <ul class="symbols">
+          <li>구화(꽃): 목련</li>
+          <li>구목(나무): 단풍나무</li>
+          <li>구조(새): 청둥오리</li>
+        </ul>
+      </section>
+      <section id="faq">
+        <h2>자주 묻는 질문</h2>
+        <div class="faq">
+          <details>
+            <summary>마포구청은 어디에 있고 어떻게 가나요?</summary>
+            <p>마포구청은 상암동 월드컵로 212에 있으며, 서울 지하철 6호선 마포구청역에서 가깝습니다.</p>
+          </details>
+          <details>
+            <summary>홍대 거리에 가려면 어느 역에서 내려야 하나요?</summary>
+            <p>2호선·경의중앙선·공항철도가 만나는 홍대입구역에서 내리면 걷고싶은거리와 연남동 상권으로 바로 이어집니다.</p>
+          </details>
+          <details>
+            <summary>마포구에서 가을 억새를 볼 수 있는 곳은 어디인가요?</summary>
+            <p>상암동 하늘공원이 가을 억새 군락으로 가장 유명하며, 매년 억새 축제 기간에는 야간 개장도 진행됩니다.</p>
+          </details>
+          <details>
+            <summary>인천공항에서 마포구로 바로 오는 방법이 있나요?</summary>
+            <p>인천국제공항철도를 타면 환승 없이 홍대입구역이나 공덕역에 도착할 수 있어 접근성이 좋습니다.</p>
+          </details>
+          <details>
+            <summary>마포구를 대표하는 산업은 무엇인가요?</summary>
+            <p>상암동 디지털미디어시티를 중심으로 한 방송·미디어 산업과 홍대·합정 일대의 문화·출판·창업 생태계가 지역을 대표합니다.</p>
+          </details>
+          <details>
+            <summary>마포나루 새우젓은 지금도 유명한가요?</summary>
+            <p>조선시대 마포나루가 새우젓 유통의 중심지였던 전통을 이어 지금도 마포나루 새우젓축제가 열리며 지역의 향토 문화로 남아 있습니다.</p>
+          </details>
+        </div>
+      </section>
+      <section id="links">
+        <h2>공식 링크</h2>
+        <ul>
+          <li><a href="https://www.mapo.go.kr" rel="noopener">마포구청</a></li>
+          <li><a href="https://www.mfac.or.kr" rel="noopener">마포문화재단</a></li>
+        </ul>
+      </section>
+      <section id="sources">
+        <h2>출처</h2>
+        <ul class="sources">
+          <li><a href="https://ko.wikipedia.org/wiki/마포구" rel="noopener">마포구 - 위키백과</a> (조회 2026-07-08)</li>
+          <li><a href="https://ko.wikipedia.org/wiki/월드컵공원" rel="noopener">월드컵공원 - 위키백과</a> (조회 2026-07-08)</li>
+          <li><a href="https://ko.wikipedia.org/wiki/양화진외국인선교사묘원" rel="noopener">양화진외국인선교사묘원 - 위키백과</a> (조회 2026-07-08)</li>
+          <li><a href="https://www.mfac.or.kr" rel="noopener">마포문화재단 공식 홈페이지</a> (조회 2026-07-08)</li>
+        </ul>
+      </section> sections — always visible, always in DOM (SEO safe) */
+    .mapo-content{}
+    .mapo-content section{
+      position:relative;
+      margin:0 0 16px;
+      padding:20px 22px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.1);
+      border-left:3px solid var(--cyan);
+      border-radius:14px;
+      scroll-margin-top:16px;
+      transition:border-color .3s, box-shadow .3s, transform .3s;
+    }
+    .mapo-content section.tt-active{
+      border-left-color:var(--hot);
+      border-color:rgba(255,0,127,.45);
+      box-shadow:0 0 26px rgba(255,0,127,.18);
+    }
+    .mapo-content section > h2{
+      font-family:var(--serif);
+      font-weight:800;
+      font-size:22px;
+      margin:0 0 10px;
+      color:var(--paper);
+      display:flex;align-items:center;gap:9px;
+    }
+    .mapo-content section > h2::before{
+      content:"";width:9px;height:9px;border-radius:50%;
+      background:var(--hot);box-shadow:0 0 8px var(--hot);flex:none;
+    }
+    .mapo-content p{line-height:1.85;font-size:15.5px;color:#e9e4da;margin:0 0 10px;}
+    .mapo-content a{color:var(--cyan);text-decoration:none;border-bottom:1px dotted rgba(0,229,255,.5);}
+    .mapo-content a:hover{color:var(--hot);border-color:var(--hot);}
+    .mapo-content ul,.mapo-content ol{padding-left:1.2em;line-height:1.8;color:#e9e4da;}
+    .mapo-content li{margin:4px 0;}
+
+    /* facts / symbols as cards */
+    .mapo-content .facts,.mapo-content .symbols{
+      list-style:none;padding:0;margin:6px 0 0;
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;
+    }
+    .mapo-content .facts li,.mapo-content .symbols li{
+      background:rgba(0,229,255,.06);
+      border:1px solid rgba(0,229,255,.2);
+      border-radius:10px;padding:10px 12px;font-size:14px;margin:0;
+      font-family:var(--retro);
+    }
+    .mapo-content .facts strong,.mapo-content .symbols strong{color:var(--cyan);display:block;font-family:var(--serif);}
+
+    /* faq details/summary — retro flip cards */
+    .mapo-content .faq details{
+      background:rgba(255,0,127,.05);
+      border:1px solid rgba(255,0,127,.25);
+      border-radius:10px;margin:8px 0;padding:0 14px;
+      transition:.2s;
+    }
+    .mapo-content .faq details[open]{border-color:var(--hot);box-shadow:0 0 16px rgba(255,0,127,.15);}
+    .mapo-content .faq summary{
+      cursor:pointer;padding:12px 0;font-family:var(--serif);font-weight:700;
+      font-size:15px;color:var(--paper);list-style:none;position:relative;padding-right:24px;
+    }
+    .mapo-content .faq summary::-webkit-details-marker{display:none;}
+    .mapo-content .faq summary::after{
+      content:"+";position:absolute;right:2px;top:10px;color:var(--hot);
+      font-family:var(--disp);font-size:18px;transition:.2s;
+    }
+    .mapo-content .faq details[open] summary::after{content:"\2013";}
+    .mapo-content .faq p{padding-bottom:12px;}
+
+    .mapo-content h3{font-family:var(--serif);font-weight:700;font-size:17px;color:var(--cyan);margin:14px 0 6px;}
+
+    .mapo-foot{
+      text-align:center;padding:16px;font-family:var(--retro);font-size:12px;
+      color:rgba(244,239,230,.55);border-top:1px solid rgba(255,255,255,.08);
+    }
+    .mapo-foot b{color:var(--hot);font-family:var(--disp);letter-spacing:.1em;}
+
+    @media(prefers-reduced-motion:reduce){
+      .mapo-rotor{transition:none;}
+    }
+  </style>
+
+  <header class="mapo-hero">
+    <div class="mapo-kicker">Hongdae Retro Turntable</div>
+    <h1 class="mapo-title">서울 <b>마포구</b></h1>
+    <p class="mapo-sub">마포구 지역 정보 · 서울특별시</p>
+    <div class="mapo-neon">DRAG THE DISC · 홍대 감성 라디오</div>
+  </header>
+
+  <div class="mapo-deck">
+    <!-- LEFT: turntable controller (progressive enhancement) -->
+    <div class="mapo-tt-wrap">
+      <div class="mapo-platter" id="mapo-platter" role="group" aria-label="섹션 선택 턴테이블 — 드래그로 회전, 콘텐츠는 오른쪽에 항상 표시됨">
+        <div class="mapo-needle" aria-hidden="true"></div>
+        <div class="mapo-rotor" id="mapo-rotor" aria-hidden="true"></div>
+        <div class="mapo-hub" aria-hidden="true">
+          <span class="num" id="mapo-hub-num">01/09</span>
+          <span class="lab" id="mapo-hub-lab">지역 소개</span>
+          <span class="hint">◈ 돌려서 선택 ◈</span>
+        </div>
+      </div>
+      <div class="mapo-tt-cta">
+        <button class="mapo-btn" id="mapo-prev" type="button">◀ PREV</button>
+        <button class="mapo-btn hot" id="mapo-next" type="button">NEXT ▶</button>
+      </div>
+    </div>
+
+    <!-- RIGHT: real content, never hidden -->
+    <div class="mapo-stage">
+      <nav class="mapo-quicknav" id="mapo-quicknav" aria-label="섹션 바로가기"></nav>
+      <div class="mapo-content" id="mapo-content">
+              <section id="intro">
         <h2>지역 소개</h2>
         <p>마포구는 한강 북안에 자리한 서울의 자치구로, 옛 마포나루의 물류 전통 위에 오늘날 청년 문화와 미디어 산업이 겹쳐 성장한 곳이다. 홍대와 합정, 연남동 일대는 인디 음악과 카페, 출판·디자인 스튜디오가 밀집해 서울에서 가장 젊은 거리로 꼽힌다. 상암동 디지털미디어시티에는 지상파 방송사와 IT 기업이 모여 수도권 방송·콘텐츠 산업의 한 축을 이룬다. 경의선 숲길과 월드컵공원이 촘촘한 도심 사이로 녹지의 여유를 더한다. 강 건너 여의도·영등포와 마주 보며 서울 서북부의 관문 역할도 겸한다.</p>
       </section>
@@ -261,10 +759,193 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--line);
           <li><a href="https://www.mfac.or.kr" rel="noopener">마포문화재단 공식 홈페이지</a> (조회 2026-07-08)</li>
         </ul>
       </section>
+      </div>
     </div>
-    <footer>
-      <p>이 페이지는 공개 자료를 바탕으로 작성된 마포구 지역 정보 페이지입니다.</p>
-    </footer>
-  </main>
+  </div>
+
+  <div class="mapo-foot">
+    <b>MAPO-GU</b> · 서울특별시 마포구 · kr-seoul-mapo · 한강과 홍대의 도시
+  </div>
+
+  <script>
+  (function(){
+    var root = document.getElementById('mapo-root');
+    if(!root) return;
+    var content = document.getElementById('mapo-content');
+    var rotor   = document.getElementById('mapo-rotor');
+    var platter = document.getElementById('mapo-platter');
+    var hubNum  = document.getElementById('mapo-hub-num');
+    var hubLab  = document.getElementById('mapo-hub-lab');
+    var quicknav= document.getElementById('mapo-quicknav');
+
+    var LABELS = {
+      intro:'지역 소개', facts:'주요 정보', history:'역사',
+      geography:'지리', characteristics:'특징', landmarks:'명소',
+      heritage:'문화유산', nature:'자연·휴식', transport:'교통',
+      symbols:'상징', faq:'자주 묻는 질문', links:'관련 링크', sources:'출처'
+    };
+    var ICONS = {
+      intro:'♪', facts:'✶', history:'⌛', geography:'⛰', characteristics:'◈',
+      landmarks:'☆', heritage:'⚑', nature:'❀', transport:'⌖',
+      symbols:'✦', faq:'?', links:'⇢', sources:'§'
+    };
+
+    // Collect real sections in DOM order (whatever generator injected)
+    var sections = Array.prototype.slice.call(content.querySelectorAll('section[id]'));
+    if(!sections.length){ if(rotor) rotor.parentNode.style.display='none'; return; }
+
+    // Build quick-nav chips (works without JS-free too, but this is enhancement)
+    sections.forEach(function(sec){
+      var id = sec.id;
+      var btn = document.createElement('button');
+      btn.type='button';
+      btn.textContent = LABELS[id] || (sec.querySelector('h2')?sec.querySelector('h2').textContent:id);
+      btn.setAttribute('data-target', id);
+      btn.addEventListener('click', function(){ goTo(indexOf(id), true); });
+      quicknav.appendChild(btn);
+    });
+
+    function indexOf(id){ for(var i=0;i<sections.length;i++){ if(sections[i].id===id) return i;} return 0; }
+
+    // Place pips radially around the platter
+    var N = sections.length;
+    sections.forEach(function(sec, i){
+      var ang = (360/N)*i;                 // pip angle within rotor
+      var id = sec.id;
+      var pip = document.createElement('div');
+      pip.className='mapo-pip';
+      pip.style.transform = 'rotate('+ang+'deg)';
+      var dot = document.createElement('div');
+      dot.className='dot';
+      // counter-rotate the dot so text stays upright
+      dot.style.transform = 'translate(-50%,-50%) rotate('+(-ang)+'deg)';
+      dot.innerHTML = '<span class="ic">'+(ICONS[id]||'●')+'</span><span>'+
+                      (LABELS[id]||id)+'</span>';
+      pip.appendChild(dot);
+      rotor.appendChild(pip);
+    });
+
+    var active = 0;
+    var rotationBase = 0; // continuous accumulated rotation of the rotor (deg)
+
+    function labelFor(i){ var id=sections[i].id; return LABELS[id]||id; }
+
+    function render(scroll){
+      // highlight active section
+      sections.forEach(function(s,i){ s.classList.toggle('tt-active', i===active); });
+      Array.prototype.forEach.call(quicknav.children, function(b,i){
+        b.setAttribute('aria-current', i===active ? 'true':'false');
+      });
+      hubNum.textContent = String(active+1).padStart(2,'0')+'/'+String(N).padStart(2,'0');
+      hubLab.textContent = labelFor(active);
+      // highlight dots
+      Array.prototype.forEach.call(rotor.children, function(pip,i){
+        pip.querySelector('.dot').style.borderColor = (i===active)?'#FF007F':'rgba(0,229,255,.35)';
+        pip.querySelector('.dot').style.color = (i===active)?'#FF007F':'#00E5FF';
+        pip.querySelector('.dot').style.boxShadow = (i===active)?'0 0 14px rgba(255,0,127,.5)':'inset 0 0 10px rgba(0,0,0,.6)';
+      });
+      if(scroll){
+        sections[active].scrollIntoView({behavior:'smooth', block:'start'});
+      }
+    }
+
+    // rotate rotor so active pip sits under the needle (top = -90deg in std coords, but pips start at top already)
+    function snapRotor(){
+      // pip i base angle = (360/N)*i measured clockwise from top.
+      // We want active pip at top => rotor rotation = -(360/N)*active (mod), choose nearest to current base.
+      var target = -(360/N)*active;
+      // pick equivalent target closest to current rotationBase to avoid long spins
+      while(target - rotationBase > 180) target -= 360;
+      while(target - rotationBase < -180) target += 360;
+      rotationBase = target;
+      rotor.style.transition = 'transform .4s cubic-bezier(.2,.8,.25,1)';
+      rotor.style.transform = 'rotate('+rotationBase+'deg)';
+    }
+
+    function goTo(i, scroll){
+      active = ((i % N)+N)%N;
+      render(scroll);
+      snapRotor();
+    }
+
+    // ---- Drag rotation ----
+    var dragging=false, lastAngle=0, moved=0;
+    function pointerAngle(ev){
+      var r = platter.getBoundingClientRect();
+      var cx = r.left + r.width/2, cy = r.top + r.height/2;
+      var x = (ev.touches?ev.touches[0].clientX:ev.clientX) - cx;
+      var y = (ev.touches?ev.touches[0].clientY:ev.clientY) - cy;
+      return Math.atan2(y,x)*180/Math.PI;
+    }
+    function down(ev){
+      dragging=true; moved=0;
+      lastAngle=pointerAngle(ev);
+      platter.classList.add('dragging');
+      rotor.style.transition='none';
+      ev.preventDefault();
+    }
+    function move(ev){
+      if(!dragging) return;
+      var a=pointerAngle(ev);
+      var d=a-lastAngle;
+      if(d>180)d-=360; if(d<-180)d+=360;
+      lastAngle=a;
+      moved+=Math.abs(d);
+      rotationBase+=d;
+      rotor.style.transform='rotate('+rotationBase+'deg)';
+      ev.preventDefault();
+    }
+    function up(){
+      if(!dragging) return;
+      dragging=false;
+      platter.classList.remove('dragging');
+      // which pip is nearest the top now?
+      // rotor rotation R => pip i is at angle (baseAng_i + R). top when that ≡ 0 (mod360).
+      var best=0, bestDiff=1e9;
+      for(var i=0;i<N;i++){
+        var pos = (( (360/N)*i + rotationBase )%360+360)%360; // 0 = top
+        var diff = Math.min(pos, 360-pos);
+        if(diff<bestDiff){bestDiff=diff; best=i;}
+      }
+      active=best;
+      render(moved>8); // only auto-scroll if it was a real turn, not a tap
+      snapRotor();
+    }
+
+    platter.addEventListener('mousedown',down);
+    window.addEventListener('mousemove',move);
+    window.addEventListener('mouseup',up);
+    platter.addEventListener('touchstart',down,{passive:false});
+    window.addEventListener('touchmove',move,{passive:false});
+    window.addEventListener('touchend',up);
+
+    document.getElementById('mapo-prev').addEventListener('click',function(){goTo(active-1,true);});
+    document.getElementById('mapo-next').addEventListener('click',function(){goTo(active+1,true);});
+
+    // keyboard support on platter
+    platter.tabIndex=0;
+    platter.addEventListener('keydown',function(e){
+      if(e.key==='ArrowRight'||e.key==='ArrowDown'){goTo(active+1,true);e.preventDefault();}
+      if(e.key==='ArrowLeft'||e.key==='ArrowUp'){goTo(active-1,true);e.preventDefault();}
+    });
+
+    // sync active as user scrolls content (so disc follows reading)
+    if('IntersectionObserver' in window){
+      var io=new IntersectionObserver(function(entries){
+        entries.forEach(function(en){
+          if(en.isIntersecting){
+            var i=sections.indexOf(en.target);
+            if(i>-1 && i!==active){ active=i; render(false); snapRotor(); }
+          }
+        });
+      },{rootMargin:'-40% 0px -50% 0px', threshold:0});
+      sections.forEach(function(s){io.observe(s);});
+    }
+
+    render(false);
+    snapRotor();
+  })();
+  </script>
+</div>
 </body>
 </html>
