@@ -284,6 +284,42 @@ body { padding-top: var(--cg-strip-h); }
 .cg-colophon-note { margin: 4px 0 0; color: #9a9aa8; }
 @media (max-width: 640px) { .cg-strip-label { display: none; } }
 @media (prefers-reduced-motion: reduce) { .cg-skip { transition: none; } }
+
+/* ---- Mobile reading view (touch / small screens) ------------------------------------- */
+/* The immersive per-구 template is desktop-only. On touch devices and narrow screens the
+   .cg-read view is shown instead — it uses only safe, high-contrast CSS so text can never
+   go invisible on iOS Safari (no background-clip:text, backdrop-filter, 100vh, :hover-gated
+   reveals, or mix-blend-mode). Fully namespaced + generator-controlled. */
+.cg-read { display: none; }
+@media (hover: none) and (pointer: coarse), (max-width: 768px) {
+  /* Neutralise immersive templates that lock scrolling / lock the viewport on <body>. */
+  html, body { overflow-x: hidden !important; overflow-y: auto !important; height: auto !important;
+    min-height: 0 !important; position: static !important; touch-action: auto !important; background: #ffffff !important; }
+  .cg-immersive { display: none !important; }
+  .cg-read { display: block; }
+}
+.cg-read { max-width: 720px; margin: 0 auto; padding: 20px 18px 8px;
+  font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  color: #17171f; background: #ffffff; line-height: 1.75; -webkit-text-size-adjust: 100%; }
+.cg-read * { max-width: 100%; box-sizing: border-box; }
+.cg-read-head { padding: 8px 0 16px; border-bottom: 3px solid var(--cg-ra, #2d5bff); margin-bottom: 20px; }
+.cg-read-eyebrow { margin: 0 0 4px; color: var(--cg-rd, #333); font-weight: 700; font-size: 15px; letter-spacing: .02em; }
+.cg-read-head h1 { margin: 0; font-size: clamp(30px, 8vw, 40px); line-height: 1.15; color: #14141c; font-weight: 800; }
+.cg-read h2 { font-size: 20px; margin: 30px 0 10px; padding-left: 11px; color: #14141c; font-weight: 700;
+  border-left: 5px solid var(--cg-ra, #2d5bff); }
+.cg-read p { margin: 0 0 12px; font-size: 17px; color: #23232d; }
+.cg-read section { margin: 0; }
+.cg-read ul { margin: 8px 0 0; padding-left: 20px; }
+.cg-read li { margin: 8px 0; font-size: 16px; color: #23232d; }
+.cg-read li strong { color: #111119; font-weight: 700; }
+.cg-read .facts, .cg-read .symbols { list-style: none; padding: 14px 16px; margin: 8px 0 0;
+  background: #f5f6fa; border: 1px solid #e6e8f0; border-radius: 12px; }
+.cg-read .faq details { border: 1px solid #e6e8f0; border-radius: 10px; padding: 10px 14px; margin: 8px 0; background: #fbfbfd; }
+.cg-read .faq summary { cursor: pointer; font-weight: 700; font-size: 16px; color: #14141c; }
+.cg-read .faq details p { margin: 8px 0 2px; color: #44454f; }
+.cg-read a { color: #1a46d8; word-break: break-word; }
+.cg-read .sources { font-size: 14px; color: #55565f; }
+.cg-read .sources a { color: #3a5bd0; }
 </style>
 </head>
 <body>
@@ -292,6 +328,7 @@ body { padding-top: var(--cg-strip-h); }
     <span class="cg-ad">AD</span><span class="cg-strip-label">후원 파트너</span><span class="cg-strip-list"><a class="cg-strip-item" href="https://ikoffices.com" rel="sponsored noopener" target="_blank">일광오피스</a><span class="cg-strip-dot" aria-hidden="true">·</span><a class="cg-strip-item" href="https://mobidicsaju.com" rel="sponsored noopener" target="_blank">모비딕 사주</a><span class="cg-strip-dot" aria-hidden="true">·</span><a class="cg-strip-item" href="https://www.foodskorea.com/" rel="sponsored noopener" target="_blank">전국팔도 식품도감</a><span class="cg-strip-dot" aria-hidden="true">·</span><a class="cg-strip-item" href="https://myflowmakers.com" rel="sponsored noopener" target="_blank">마이플로우메이커스</a><span class="cg-strip-dot" aria-hidden="true">·</span><a class="cg-strip-item" href="https://yeonlijispace.com" rel="sponsored noopener" target="_blank">연리지 인테리어</a><span class="cg-strip-dot" aria-hidden="true">·</span><a class="cg-strip-item" href="https://yeonliji.io" rel="sponsored noopener" target="_blank">주식회사 연리지</a><span class="cg-strip-dot" aria-hidden="true">·</span><span class="cg-strip-item cg-strip-text">세무·법률 자문</span></span>
   </aside>
   <div id="cg-main" tabindex="-1"></div>
+  <div class="cg-immersive">
 <div class="mapo-turntable" id="mapo-root">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Righteous&family=Nanum+Myeongjo:wght@400;700;800&family=Gaegu:wght@400;700&display=swap');
@@ -481,124 +518,7 @@ body { padding-top: var(--cg-strip-h); }
       border-color:var(--hot);color:var(--hot);
     }
 
-    /* the       <section id="intro">
-        <h2>지역 소개</h2>
-        <p>마포구는 한강 북안에 자리한 서울의 자치구로, 옛 마포나루의 물류 전통 위에 오늘날 청년 문화와 미디어 산업이 겹쳐 성장한 곳이다. 홍대와 합정, 연남동 일대는 인디 음악과 카페, 출판·디자인 스튜디오가 밀집해 서울에서 가장 젊은 거리로 꼽힌다. 상암동 디지털미디어시티에는 지상파 방송사와 IT 기업이 모여 수도권 방송·콘텐츠 산업의 한 축을 이룬다. 경의선 숲길과 월드컵공원이 촘촘한 도심 사이로 녹지의 여유를 더한다. 강 건너 여의도·영등포와 마주 보며 서울 서북부의 관문 역할도 겸한다.</p>
-      </section>
-      <section id="facts">
-        <h2>주요 통계</h2>
-        <ul class="facts">
-          <li>인구: 약 364,374명 (2022)</li>
-          <li>면적: 23.85 km²</li>
-          <li>신설: 1944-11-01</li>
-        </ul>
-      </section>
-      <section id="history">
-        <h2>역사</h2>
-        <p>마포구 일대는 조선시대 한강 수운의 요충지로, 마포나루를 통해 삼남 지방의 곡물과 새우젓·소금 같은 젓갈류가 도성으로 드나들던 번화한 상업 포구였다. 마포구라는 행정 단위는 1944년 11월 1일 경성부 마포구로 처음 설치되었고, 광복 이후 서울특별시의 자치구로 자리를 잡았다. 근대에는 공덕동과 도화동을 중심으로 시가지가 넓어졌고 아현동 일대에는 오래된 주거지가 형성되었다. 1990년대 이후 홍익대학교 앞을 축으로 한 문화 거리가 폭발적으로 성장하면서 지역 색이 크게 바뀌었다. 2002년 한일 월드컵을 앞두고 옛 난지도 쓰레기 매립지가 월드컵공원으로, 상암동 일대가 디지털미디어시티로 재탄생하며 오늘의 마포가 완성되었다.</p>
-      </section>
-      <section id="geography">
-        <h2>지리·자연환경</h2>
-        <p>마포구는 서울 서북부에 위치하며 남쪽으로 한강을 경계 삼아 강서구·영등포구와 마주하고, 북쪽으로는 서대문구와 은평구, 동쪽으로는 중구·용산구, 서쪽으로는 경기도 고양시 덕양구와 접한다. 지형은 대체로 낮고 평탄한 편이지만 성미산과 매봉산 같은 야트막한 구릉이 주택가 사이에 솟아 있다. 한강 본류가 구의 남쪽 경계를 길게 흐르고, 홍제천과 불광천이 북부를 지나 한강으로 합류한다. 상암동 서쪽 끝에는 옛 난지도가 자리해 두 물길이 한강과 만나던 삼각주 지형의 흔적을 남긴다. 한강 가운데 떠 있는 밤섬은 철새가 찾아드는 습지로 생태 보전 구역으로 관리된다.</p>
-      </section>
-      <section id="characteristics">
-        <h2>지역 특징</h2>
-        <p>면적 약 23.85㎢에 2022년 기준 약 36만 명이 거주하는 마포구는 인구 밀도가 높은 도심형 자치구로, 16개 행정동과 26개 법정동으로 나뉜다. 산업 구성은 방송·출판·디자인 등 콘텐츠 분야와 창업·스타트업 생태계가 두드러진다는 점에서 서울의 다른 자치구와 뚜렷이 구별된다. 상암동 디지털미디어시티가 방송·IT 클러스터를 이룬다면, 홍대·합정·연남동 벨트는 소규모 문화 산업과 상권이 촘촘히 얽힌 지역이다. 서강대학교와 홍익대학교가 자리해 대학생과 예술가 인구가 상권과 임대 시장에 큰 영향을 준다. 공덕동 일대는 오피스와 주거가 섞인 도심 업무 상권으로, 젊은 문화 이미지와는 또 다른 안정된 생활권을 형성한다.</p>
-      </section>
-      <section id="landmarks">
-        <h2>대표 명소</h2>
-        <ul>
-          <li><strong>서울월드컵경기장</strong> — 2002년 한일 월드컵을 위해 상암동에 지어진 축구 전용 경기장으로, 프로축구 FC 서울의 홈구장이자 대형 공연도 열리는 랜드마크다.</li>
-          <li><strong>하늘공원</strong> — 옛 난지도 쓰레기 매립지를 생태공원으로 되살린 곳으로, 가을이면 억새 군락과 메타세쿼이아 길이 장관을 이룬다.</li>
-          <li><strong>홍대 걷고싶은거리</strong> — 홍익대학교 앞에 형성된 청년 문화의 중심지로, 인디 음악 공연과 거리 예술, 개성 있는 상점이 밀집해 있다.</li>
-          <li><strong>경의선 숲길</strong> — 폐선된 경의선 부지를 선형 공원으로 조성한 도심 산책로로, 연남동 구간은 &#x27;연트럴파크&#x27;라는 별칭으로 사랑받는다.</li>
-          <li><strong>디지털미디어시티</strong> — 상암동에 조성된 첨단 미디어·IT 단지로, 지상파 방송사와 콘텐츠 기업 본사가 모여 있는 서울 서북부의 산업 거점이다.</li>
-        </ul>
-      </section>
-      <section id="heritage">
-        <h2>문화유산·문화시설</h2>
-        <ul>
-          <li><strong>절두산 순교성지</strong> — 합정동 한강변 잠두봉에 자리한 천주교 순교성지로, 1866년 병인박해 순교를 기린다. 일대는 &#x27;서울 양화나루와 잠두봉 유적&#x27;으로 사적으로 지정되어 있다.</li>
-          <li><strong>양화진외국인선교사묘원</strong> — 합정동에 있는 근대 외국인 묘원으로, 1890년 조성 이후 개신교 선교사 등 여러 나라 인사가 안장되어 한국 근대사와 선교 역사를 증언한다.</li>
-          <li><strong>문화비축기지</strong> — 매봉산 자락 옛 마포석유비축기지를 재생한 복합문화공간으로, 여섯 개의 탱크에서 전시·공연·워크숍이 열리고 넓은 문화마당이 축제 무대가 된다.</li>
-          <li><strong>마포아트센터</strong> — 대흥동에 자리한 마포문화재단 운영의 전문 공연장으로, 클래식·연극·전시 등 다양한 프로그램을 선보이는 지역 대표 문화시설이다.</li>
-          <li><strong>마포나루 새우젓축제</strong> — 마포나루의 새우젓 상거래 전통을 잇는 향토 축제로, 젓갈 장터와 공연·체험 행사가 어우러져 매년 열린다.</li>
-        </ul>
-      </section>
-      <section id="nature">
-        <h2>자연·휴식</h2>
-        <ul>
-          <li><strong>월드컵공원</strong> — 상암동·성산동 일원에 조성된 대공원으로 평화의공원·하늘공원·노을공원·난지천공원·난지한강공원 다섯 구역으로 이루어져 있다.</li>
-          <li><strong>노을공원</strong> — 난지도 매립지 위에 만들어진 공원으로, 한강 너머로 지는 노을 조망과 캠핑장·잔디밭이 어우러진 가족 나들이 명소다.</li>
-          <li><strong>난지한강공원</strong> — 한강변을 따라 산책로와 자전거길, 캠핑장이 펼쳐진 수변 공원으로, 월드컵공원과 연결 다리로 이어진다.</li>
-          <li><strong>성미산</strong> — 성산동의 해발 66m 남짓한 나지막한 산으로, 완만한 산책로와 맨발길이 있어 인근 주민의 일상 휴식처가 된다. 성미산마을 공동체 운동의 상징이기도 하다.</li>
-          <li><strong>망원한강공원</strong> — 망원동 한강변에 자리한 공원으로, 넓은 잔디밭과 자전거 대여, 유람선 선착장을 갖춰 시민들의 여가 공간으로 붐빈다.</li>
-        </ul>
-      </section>
-      <section id="transport">
-        <h2>교통</h2>
-        <p>마포구에는 서울 지하철 2호선·5호선·6호선과 경의·중앙선, 인천국제공항철도가 지나 서울 서북부에서 손꼽히는 교통 요지다. 홍대입구역은 2호선·경의중앙선·공항철도가 만나는 세 노선 환승역으로, 인천공항과 도심을 잇는 관문이자 관광객이 가장 많이 찾는 거점이다. 공덕역 역시 5호선·6호선·경의중앙선·공항철도가 교차해 여러 방향으로 빠르게 연결되는 결절점 역할을 한다. 상암동에는 6호선 디지털미디어시티역과 월드컵경기장역이 미디어 산업 단지와 경기장 이용객을 실어 나른다. 도로로는 강변북로가 한강을 따라 동서로 이어지고 월드컵로와 마포대로가 지역의 주요 간선축을 이룬다. 마포대교·양화대교·성산대교가 한강을 건너 영등포·여의도 방면과 연결된다.</p>
-      </section>
-      <section id="symbols">
-        <h2>지역 상징</h2>
-        <ul class="symbols">
-          <li>구화(꽃): 목련</li>
-          <li>구목(나무): 단풍나무</li>
-          <li>구조(새): 청둥오리</li>
-        </ul>
-      </section>
-      <section id="faq">
-        <h2>자주 묻는 질문</h2>
-        <div class="faq">
-          <details>
-            <summary>마포구청은 어디에 있고 어떻게 가나요?</summary>
-            <p>마포구청은 상암동 월드컵로 212에 있으며, 서울 지하철 6호선 마포구청역에서 가깝습니다.</p>
-          </details>
-          <details>
-            <summary>홍대 거리에 가려면 어느 역에서 내려야 하나요?</summary>
-            <p>2호선·경의중앙선·공항철도가 만나는 홍대입구역에서 내리면 걷고싶은거리와 연남동 상권으로 바로 이어집니다.</p>
-          </details>
-          <details>
-            <summary>마포구에서 가을 억새를 볼 수 있는 곳은 어디인가요?</summary>
-            <p>상암동 하늘공원이 가을 억새 군락으로 가장 유명하며, 매년 억새 축제 기간에는 야간 개장도 진행됩니다.</p>
-          </details>
-          <details>
-            <summary>인천공항에서 마포구로 바로 오는 방법이 있나요?</summary>
-            <p>인천국제공항철도를 타면 환승 없이 홍대입구역이나 공덕역에 도착할 수 있어 접근성이 좋습니다.</p>
-          </details>
-          <details>
-            <summary>마포구를 대표하는 산업은 무엇인가요?</summary>
-            <p>상암동 디지털미디어시티를 중심으로 한 방송·미디어 산업과 홍대·합정 일대의 문화·출판·창업 생태계가 지역을 대표합니다.</p>
-          </details>
-          <details>
-            <summary>마포나루 새우젓은 지금도 유명한가요?</summary>
-            <p>조선시대 마포나루가 새우젓 유통의 중심지였던 전통을 이어 지금도 마포나루 새우젓축제가 열리며 지역의 향토 문화로 남아 있습니다.</p>
-          </details>
-        </div>
-      </section>
-      <section id="links">
-        <h2>공식 링크</h2>
-        <ul>
-          <li><a href="https://www.mapo.go.kr" rel="noopener">마포구청</a></li>
-          <li><a href="https://www.mfac.or.kr" rel="noopener">마포문화재단</a></li>
-        </ul>
-      </section>
-      <section id="github">
-        <h2>GitHub</h2>
-        <ul>
-          <li><a href="https://github.com/kr-seoul-mapo" rel="noopener">GitHub 조직: kr-seoul-mapo</a></li>
-          <li><a href="https://github.com/kr-seoul-mapo/kr-seoul-mapo.github.io" rel="noopener">이 사이트 저장소</a></li>
-        </ul>
-      </section>
-      <section id="sources">
-        <h2>출처</h2>
-        <ul class="sources">
-          <li><a href="https://ko.wikipedia.org/wiki/마포구" rel="noopener">마포구 - 위키백과</a> (조회 2026-07-08)</li>
-          <li><a href="https://ko.wikipedia.org/wiki/월드컵공원" rel="noopener">월드컵공원 - 위키백과</a> (조회 2026-07-08)</li>
-          <li><a href="https://ko.wikipedia.org/wiki/양화진외국인선교사묘원" rel="noopener">양화진외국인선교사묘원 - 위키백과</a> (조회 2026-07-08)</li>
-          <li><a href="https://www.mfac.or.kr" rel="noopener">마포문화재단 공식 홈페이지</a> (조회 2026-07-08)</li>
-        </ul>
-      </section> sections — always visible, always in DOM (SEO safe) */
+    /* the 콘텐츠 sections — always visible, always in DOM (SEO safe) */
     .mapo-content{}
     .mapo-content section{
       position:relative;
@@ -1016,6 +936,133 @@ body { padding-top: var(--cg-strip-h); }
   })();
   </script>
 </div>
+  </div>
+  <main class="cg-read" id="cg-read" role="main" lang="ko" style="--cg-ra:#2baba7;--cg-ra2:#3980d0;--cg-rd:#195755">
+    <header class="cg-read-head">
+      <p class="cg-read-eyebrow">서울특별시</p>
+      <h1>마포구</h1>
+    </header>
+    <div class="cg-read-body">
+      <section id="r-intro">
+        <h2>지역 소개</h2>
+        <p>마포구는 한강 북안에 자리한 서울의 자치구로, 옛 마포나루의 물류 전통 위에 오늘날 청년 문화와 미디어 산업이 겹쳐 성장한 곳이다. 홍대와 합정, 연남동 일대는 인디 음악과 카페, 출판·디자인 스튜디오가 밀집해 서울에서 가장 젊은 거리로 꼽힌다. 상암동 디지털미디어시티에는 지상파 방송사와 IT 기업이 모여 수도권 방송·콘텐츠 산업의 한 축을 이룬다. 경의선 숲길과 월드컵공원이 촘촘한 도심 사이로 녹지의 여유를 더한다. 강 건너 여의도·영등포와 마주 보며 서울 서북부의 관문 역할도 겸한다.</p>
+      </section>
+      <section id="r-facts">
+        <h2>주요 통계</h2>
+        <ul class="facts">
+          <li>인구: 약 364,374명 (2022)</li>
+          <li>면적: 23.85 km²</li>
+          <li>신설: 1944-11-01</li>
+        </ul>
+      </section>
+      <section id="r-history">
+        <h2>역사</h2>
+        <p>마포구 일대는 조선시대 한강 수운의 요충지로, 마포나루를 통해 삼남 지방의 곡물과 새우젓·소금 같은 젓갈류가 도성으로 드나들던 번화한 상업 포구였다. 마포구라는 행정 단위는 1944년 11월 1일 경성부 마포구로 처음 설치되었고, 광복 이후 서울특별시의 자치구로 자리를 잡았다. 근대에는 공덕동과 도화동을 중심으로 시가지가 넓어졌고 아현동 일대에는 오래된 주거지가 형성되었다. 1990년대 이후 홍익대학교 앞을 축으로 한 문화 거리가 폭발적으로 성장하면서 지역 색이 크게 바뀌었다. 2002년 한일 월드컵을 앞두고 옛 난지도 쓰레기 매립지가 월드컵공원으로, 상암동 일대가 디지털미디어시티로 재탄생하며 오늘의 마포가 완성되었다.</p>
+      </section>
+      <section id="r-geography">
+        <h2>지리·자연환경</h2>
+        <p>마포구는 서울 서북부에 위치하며 남쪽으로 한강을 경계 삼아 강서구·영등포구와 마주하고, 북쪽으로는 서대문구와 은평구, 동쪽으로는 중구·용산구, 서쪽으로는 경기도 고양시 덕양구와 접한다. 지형은 대체로 낮고 평탄한 편이지만 성미산과 매봉산 같은 야트막한 구릉이 주택가 사이에 솟아 있다. 한강 본류가 구의 남쪽 경계를 길게 흐르고, 홍제천과 불광천이 북부를 지나 한강으로 합류한다. 상암동 서쪽 끝에는 옛 난지도가 자리해 두 물길이 한강과 만나던 삼각주 지형의 흔적을 남긴다. 한강 가운데 떠 있는 밤섬은 철새가 찾아드는 습지로 생태 보전 구역으로 관리된다.</p>
+      </section>
+      <section id="r-characteristics">
+        <h2>지역 특징</h2>
+        <p>면적 약 23.85㎢에 2022년 기준 약 36만 명이 거주하는 마포구는 인구 밀도가 높은 도심형 자치구로, 16개 행정동과 26개 법정동으로 나뉜다. 산업 구성은 방송·출판·디자인 등 콘텐츠 분야와 창업·스타트업 생태계가 두드러진다는 점에서 서울의 다른 자치구와 뚜렷이 구별된다. 상암동 디지털미디어시티가 방송·IT 클러스터를 이룬다면, 홍대·합정·연남동 벨트는 소규모 문화 산업과 상권이 촘촘히 얽힌 지역이다. 서강대학교와 홍익대학교가 자리해 대학생과 예술가 인구가 상권과 임대 시장에 큰 영향을 준다. 공덕동 일대는 오피스와 주거가 섞인 도심 업무 상권으로, 젊은 문화 이미지와는 또 다른 안정된 생활권을 형성한다.</p>
+      </section>
+      <section id="r-landmarks">
+        <h2>대표 명소</h2>
+        <ul>
+          <li><strong>서울월드컵경기장</strong> — 2002년 한일 월드컵을 위해 상암동에 지어진 축구 전용 경기장으로, 프로축구 FC 서울의 홈구장이자 대형 공연도 열리는 랜드마크다.</li>
+          <li><strong>하늘공원</strong> — 옛 난지도 쓰레기 매립지를 생태공원으로 되살린 곳으로, 가을이면 억새 군락과 메타세쿼이아 길이 장관을 이룬다.</li>
+          <li><strong>홍대 걷고싶은거리</strong> — 홍익대학교 앞에 형성된 청년 문화의 중심지로, 인디 음악 공연과 거리 예술, 개성 있는 상점이 밀집해 있다.</li>
+          <li><strong>경의선 숲길</strong> — 폐선된 경의선 부지를 선형 공원으로 조성한 도심 산책로로, 연남동 구간은 &#x27;연트럴파크&#x27;라는 별칭으로 사랑받는다.</li>
+          <li><strong>디지털미디어시티</strong> — 상암동에 조성된 첨단 미디어·IT 단지로, 지상파 방송사와 콘텐츠 기업 본사가 모여 있는 서울 서북부의 산업 거점이다.</li>
+        </ul>
+      </section>
+      <section id="r-heritage">
+        <h2>문화유산·문화시설</h2>
+        <ul>
+          <li><strong>절두산 순교성지</strong> — 합정동 한강변 잠두봉에 자리한 천주교 순교성지로, 1866년 병인박해 순교를 기린다. 일대는 &#x27;서울 양화나루와 잠두봉 유적&#x27;으로 사적으로 지정되어 있다.</li>
+          <li><strong>양화진외국인선교사묘원</strong> — 합정동에 있는 근대 외국인 묘원으로, 1890년 조성 이후 개신교 선교사 등 여러 나라 인사가 안장되어 한국 근대사와 선교 역사를 증언한다.</li>
+          <li><strong>문화비축기지</strong> — 매봉산 자락 옛 마포석유비축기지를 재생한 복합문화공간으로, 여섯 개의 탱크에서 전시·공연·워크숍이 열리고 넓은 문화마당이 축제 무대가 된다.</li>
+          <li><strong>마포아트센터</strong> — 대흥동에 자리한 마포문화재단 운영의 전문 공연장으로, 클래식·연극·전시 등 다양한 프로그램을 선보이는 지역 대표 문화시설이다.</li>
+          <li><strong>마포나루 새우젓축제</strong> — 마포나루의 새우젓 상거래 전통을 잇는 향토 축제로, 젓갈 장터와 공연·체험 행사가 어우러져 매년 열린다.</li>
+        </ul>
+      </section>
+      <section id="r-nature">
+        <h2>자연·휴식</h2>
+        <ul>
+          <li><strong>월드컵공원</strong> — 상암동·성산동 일원에 조성된 대공원으로 평화의공원·하늘공원·노을공원·난지천공원·난지한강공원 다섯 구역으로 이루어져 있다.</li>
+          <li><strong>노을공원</strong> — 난지도 매립지 위에 만들어진 공원으로, 한강 너머로 지는 노을 조망과 캠핑장·잔디밭이 어우러진 가족 나들이 명소다.</li>
+          <li><strong>난지한강공원</strong> — 한강변을 따라 산책로와 자전거길, 캠핑장이 펼쳐진 수변 공원으로, 월드컵공원과 연결 다리로 이어진다.</li>
+          <li><strong>성미산</strong> — 성산동의 해발 66m 남짓한 나지막한 산으로, 완만한 산책로와 맨발길이 있어 인근 주민의 일상 휴식처가 된다. 성미산마을 공동체 운동의 상징이기도 하다.</li>
+          <li><strong>망원한강공원</strong> — 망원동 한강변에 자리한 공원으로, 넓은 잔디밭과 자전거 대여, 유람선 선착장을 갖춰 시민들의 여가 공간으로 붐빈다.</li>
+        </ul>
+      </section>
+      <section id="r-transport">
+        <h2>교통</h2>
+        <p>마포구에는 서울 지하철 2호선·5호선·6호선과 경의·중앙선, 인천국제공항철도가 지나 서울 서북부에서 손꼽히는 교통 요지다. 홍대입구역은 2호선·경의중앙선·공항철도가 만나는 세 노선 환승역으로, 인천공항과 도심을 잇는 관문이자 관광객이 가장 많이 찾는 거점이다. 공덕역 역시 5호선·6호선·경의중앙선·공항철도가 교차해 여러 방향으로 빠르게 연결되는 결절점 역할을 한다. 상암동에는 6호선 디지털미디어시티역과 월드컵경기장역이 미디어 산업 단지와 경기장 이용객을 실어 나른다. 도로로는 강변북로가 한강을 따라 동서로 이어지고 월드컵로와 마포대로가 지역의 주요 간선축을 이룬다. 마포대교·양화대교·성산대교가 한강을 건너 영등포·여의도 방면과 연결된다.</p>
+      </section>
+      <section id="r-symbols">
+        <h2>지역 상징</h2>
+        <ul class="symbols">
+          <li>구화(꽃): 목련</li>
+          <li>구목(나무): 단풍나무</li>
+          <li>구조(새): 청둥오리</li>
+        </ul>
+      </section>
+      <section id="r-faq">
+        <h2>자주 묻는 질문</h2>
+        <div class="faq">
+          <details>
+            <summary>마포구청은 어디에 있고 어떻게 가나요?</summary>
+            <p>마포구청은 상암동 월드컵로 212에 있으며, 서울 지하철 6호선 마포구청역에서 가깝습니다.</p>
+          </details>
+          <details>
+            <summary>홍대 거리에 가려면 어느 역에서 내려야 하나요?</summary>
+            <p>2호선·경의중앙선·공항철도가 만나는 홍대입구역에서 내리면 걷고싶은거리와 연남동 상권으로 바로 이어집니다.</p>
+          </details>
+          <details>
+            <summary>마포구에서 가을 억새를 볼 수 있는 곳은 어디인가요?</summary>
+            <p>상암동 하늘공원이 가을 억새 군락으로 가장 유명하며, 매년 억새 축제 기간에는 야간 개장도 진행됩니다.</p>
+          </details>
+          <details>
+            <summary>인천공항에서 마포구로 바로 오는 방법이 있나요?</summary>
+            <p>인천국제공항철도를 타면 환승 없이 홍대입구역이나 공덕역에 도착할 수 있어 접근성이 좋습니다.</p>
+          </details>
+          <details>
+            <summary>마포구를 대표하는 산업은 무엇인가요?</summary>
+            <p>상암동 디지털미디어시티를 중심으로 한 방송·미디어 산업과 홍대·합정 일대의 문화·출판·창업 생태계가 지역을 대표합니다.</p>
+          </details>
+          <details>
+            <summary>마포나루 새우젓은 지금도 유명한가요?</summary>
+            <p>조선시대 마포나루가 새우젓 유통의 중심지였던 전통을 이어 지금도 마포나루 새우젓축제가 열리며 지역의 향토 문화로 남아 있습니다.</p>
+          </details>
+        </div>
+      </section>
+      <section id="r-links">
+        <h2>공식 링크</h2>
+        <ul>
+          <li><a href="https://www.mapo.go.kr" rel="noopener">마포구청</a></li>
+          <li><a href="https://www.mfac.or.kr" rel="noopener">마포문화재단</a></li>
+        </ul>
+      </section>
+      <section id="r-github">
+        <h2>GitHub</h2>
+        <ul>
+          <li><a href="https://github.com/kr-seoul-mapo" rel="noopener">GitHub 조직: kr-seoul-mapo</a></li>
+          <li><a href="https://github.com/kr-seoul-mapo/kr-seoul-mapo.github.io" rel="noopener">이 사이트 저장소</a></li>
+        </ul>
+      </section>
+      <section id="r-sources">
+        <h2>출처</h2>
+        <ul class="sources">
+          <li><a href="https://ko.wikipedia.org/wiki/마포구" rel="noopener">마포구 - 위키백과</a> (조회 2026-07-08)</li>
+          <li><a href="https://ko.wikipedia.org/wiki/월드컵공원" rel="noopener">월드컵공원 - 위키백과</a> (조회 2026-07-08)</li>
+          <li><a href="https://ko.wikipedia.org/wiki/양화진외국인선교사묘원" rel="noopener">양화진외국인선교사묘원 - 위키백과</a> (조회 2026-07-08)</li>
+          <li><a href="https://www.mfac.or.kr" rel="noopener">마포문화재단 공식 홈페이지</a> (조회 2026-07-08)</li>
+        </ul>
+      </section>
+    </div>
+  </main>
   <aside class="cg-sponsors" aria-label="후원 파트너 상세">
     <p class="cg-spon-head"><span class="cg-ad">AD</span> 후원 파트너 <small>이 링크는 광고이며 편집상의 추천이 아닙니다 (rel=&quot;sponsored&quot;).</small></p>
     <ul class="cg-spon-grid">
